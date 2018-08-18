@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>coffeerun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+        .orange {
+            color: orange;
+        }
+    </style>
+</head>
+<body class="container">
+<header>
+    <h1>Coffeerun</h1>
+</header>
+<section>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form data-coffee-order="form">
+                <div class="form-group">
+                    <label for="coffeeOrder">Coffee Order</label>
+                    <input name="coffee" class="form-control" id="coffeeOrder" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="emailInput">Email</label>
+                    <input type="email" class="form-control" name="emailAddress" id="emailInput" value=""
+                           placeholder="dr@who.com">
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="size" value="short">
+                        Short
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="size" value="tall" checked>
+                        Tall
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="size" value="grande">
+                        Grande
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="size" value="coffee-zilla">
+                        Coffee-zilla
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="flavorShot">Flavor Shot</label>
+                    <select name="flavor" id="flavorShot" class="form-contol">
+                        <option value="">None</option>
+                        <option value="caramel">Caramel</option>
+                        <option value="almond">Almond</option>
+                        <option value="mocha">Mocha</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="strengthLevel">Caffeine rating <span id="strengthValue"></span></label>
+                    <input type="range" name="strength" id="strengthLevel" value="30">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="reset" class="btn btn-default">Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>Pending Orders:</h4>
+            <div data-coffee-order="checklist"></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="scripts/checklist.js"></script>
+<script src="scripts/formhandler.js"></script>
+<script src="scripts/datastore.js"></script>
+<script src="scripts/truck.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
