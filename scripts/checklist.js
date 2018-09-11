@@ -13,10 +13,38 @@
         }
     }
 
+    Checklist.prototype.addClickHandler = function (fn) {
+        this.$element.on('click', 'input', function (event) {
+            let email = event.target.value;
+            this.removeRow(email);
+            fn(email);
+        }.bind(this));
+    };
+
+    Checklist.prototype.addDblClickHandler = function(){
+
+    };
+
+    Checklist.prototype.addRow = function (coffeeOrder) {
+        this.removeRow(coffeeOrder.emailAddress);
+
+        let rowElement = new Row(coffeeOrder);
+
+        this.$element.append(rowElement.$element);
+    };
+
+    Checklist.prototype.removeRow = function (email) {
+        this.$element
+            .find('[value="' + email + '"]')
+            .closest('[data-coffee-order="checkbox"]')
+            .remove();
+    };
+
     function Row(coffeeOrder) {
         let $div = $('<div></div>', {
             'data-coffee-order': 'checkbox',
-            'class': 'checkbox'
+            'class': 'checkbox',
+            'id': 'pending-orders'
         });
 
         let $label = $('<label></label>');
@@ -27,19 +55,27 @@
         });
 
         let description = coffeeOrder.size + ' ';
+
         if (coffeeOrder.flavor) {
             description += coffeeOrder.flavor + ' ';
         }
 
         description += coffeeOrder.coffee + ', ';
         description += ' (' + coffeeOrder.emailAddress + ')';
-        description += ' [' + coffeeOrder.strength + 'x]';
+        description += ' [' + coffeeOrder.strength + 'x], ';
+
+        if (coffeeOrder.chosenAcheivement) {
+            description += coffeeOrder.chosenAcheivement;
+        }
+
+        $div.addClass(coffeeOrder.flavor);
 
         $label.append($checkbox);
         $label.append(description);
         $div.append($label);
 
         this.$element = $div;
+
     }
 
     App.Checklist = Checklist;

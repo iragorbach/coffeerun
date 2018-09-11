@@ -8,11 +8,29 @@
         .red {
             color: red;
         }
+
         .green {
             color: green;
         }
+
         .orange {
             color: orange;
+        }
+
+        .caramel {
+            background-color: peru;
+        }
+
+        .almond {
+            background-color: burlywood;
+        }
+
+        .mocha {
+            background-color: bisque;
+        }
+
+        form :focus:required:invalid {
+            border-color: #a94442;
         }
     </style>
 </head>
@@ -23,15 +41,15 @@
 <section>
     <div class="panel panel-default">
         <div class="panel-body">
-            <form data-coffee-order="form">
+            <form data-coffee-order="form" name="coffee-form">
                 <div class="form-group">
                     <label for="coffeeOrder">Coffee Order</label>
-                    <input name="coffee" class="form-control" id="coffeeOrder" autofocus>
+                    <input name="coffee" class="form-control" id="coffeeOrder" required autofocus pattern="[a-zA-Z\s]+">
                 </div>
                 <div class="form-group">
                     <label for="emailInput">Email</label>
                     <input type="email" class="form-control" name="emailAddress" id="emailInput" value=""
-                           placeholder="dr@who.com">
+                           placeholder="dr@who.com" required>
                 </div>
                 <div class="radio">
                     <label>
@@ -70,6 +88,7 @@
                     <label for="strengthLevel">Caffeine rating <span id="strengthValue"></span></label>
                     <input type="range" name="strength" id="strengthLevel" value="30">
                 </div>
+                <div class="form-group" id="achievement-container"></div>
                 <button type="submit" class="btn btn-default">Submit</button>
                 <button type="reset" class="btn btn-default">Reset</button>
             </form>
@@ -84,10 +103,37 @@
     </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                Do you want to unlock your achievement?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"
+                        onclick="App.FormHandler.prototype.confirmAchievement(event, document.getElementById('emailInput').value)">
+                    Yes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="scripts/validation.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 <script src="scripts/checklist.js"></script>
 <script src="scripts/formhandler.js"></script>
+<script src="scripts/remotedatastore.js"></script>
 <script src="scripts/datastore.js"></script>
 <script src="scripts/truck.js"></script>
 <script src="scripts/main.js"></script>
